@@ -1,4 +1,4 @@
-hypnal
+hypna
 ======
 
-Hypnal Android mobile POS and server applications
+Hypna mobile payments and server applications
