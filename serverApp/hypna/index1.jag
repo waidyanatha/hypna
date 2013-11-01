@@ -1,0 +1,41 @@
+<%
+function invokeLogin(userName, pass) {
+	var log = new Log();
+	var ws = require("ws");
+	var wsr = new ws.WSRequest();
+	var options = new Array();
+	options.useSOAP = 1.2;
+	options.action = "urn:login";
+	//	var userName = "admin";
+	//	var pass = "admin";
+	var payload = '<aut:login xmlns:aut="http://authentication.services.core.carbon.wso2.org"><aut:username>' + userName + '</aut:username><aut:password>' + pass + '</aut:password><aut:remoteAddress>localhost</aut:remoteAddress></aut:login>';
+
+	var result;
+
+	try {
+		wsr.open(options, "https://localhost:9443/admin/services/AuthenticationAdmin", false);
+		wsr.send(payload);
+		result = wsr;
+		log.info(result.responseE4X.*::["return"].text());
+		var keyStr = wsr.getResponseHeader("Set-Cookie");
+		var key = keyStr.split(";")[0].split("=")[1];
+		log.info(key);
+		session.put('key', key);
+		var allow = session.get('key')== key && result.responseE4X.*::["return"].text()=="true";
+		
+		session.put('login', allow);
+	} catch (e) {
+		log.error(e.toString());
+		return e.toString();
+	}
+	return {
+		"result":result.responseE4X.*::["return"].text(),
+	"key":	key,
+	"session" : allow
+
+};
+
+}
+
+print(invokeLogin("admin", "admin"));
+%>

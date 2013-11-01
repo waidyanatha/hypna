@@ -1,0 +1,177 @@
+{ transactions: [
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Ampara",
+        "Amount": 102076.0000,
+        "Lat": 81.686699,
+        "Lon": 7.3142
+    },
+    {
+        "Month": January,
+        "Location": Retail-Store-Anuradhapura,
+        "Amount": 276376.0000,
+        "Lat": 80.414703,
+        "Lon": 8.3147
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Badulla",
+        "Amount": 301500.0000,
+        "Lat": 81.056198,
+        "Lon": 6.9846
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Batticaloa",
+        "Amount": 89900.0000,
+        "Lat": 81.697,
+        "Lon": 7.7140
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Colombo",
+        "Amount": 96900.0000,
+        "Lat": 79.8722,
+        "Lon": 6.9272
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Galle",
+        "Amount": 181500.0000,
+        "Lat": 80.218201,
+        "Lon": 6.0332
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Gampaha",
+        "Amount": 95200.0000,
+        "Lat": 79.994217,
+        "Lon": 7.08989
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Hambantota",
+        "Amount": 217000.0000,
+        "Lat": 81.120499,
+        "Lon": 6.1237
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Jaffna",
+        "Amount": 265900.0000,
+        "Lat": 80.017,
+        "Lon": 9.647
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kalmunai",
+        "Amount": 123700.0000,
+        "Lat": 81.82336,
+        "Lon": 7.40449
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kalutara",
+        "Amount": 153500.0000,
+        "Lat": 79.96473,
+        "Lon": 6.57922
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kandy",
+        "Amount": 164700.0000,
+        "Lat": 80.637199,
+        "Lon": 7.2842
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kegalle",
+        "Amount": 74300.0000,
+        "Lat": 80.332199,
+        "Lon": 7.2452
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kilinochchi",
+        "Amount": 73000.0000,
+        "Lat": 80.403503,
+        "Lon": 9.3962
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Kurunegala",
+        "Amount": 305000.0000,
+        "Lat": 80.363701,
+        "Lon": 7.4896
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Mannar",
+        "Amount": 164600.0000,
+        "Lat": 79.909203,
+        "Lon": 8.9775
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Matale",
+        "Amount": 142200.0000,
+        "Lat": 80.624001,
+        "Lon": 7.4677
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Matara",
+        "Amount": 79300.0000,
+        "Lat": 80.53535,
+        "Lon": 5.94930
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Monaragala",
+        "Amount": 162300.0000,
+        "Lat": 81.345,
+        "Lon": 6.86940
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Mullaitivu",
+        "Amount": 92200.0000,
+        "Lat": 80.77686,
+        "Lon": 9.21543
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Nuwara-Eliya",
+        "Amount": 172000.0000,
+        "Lat": 80.789711,
+        "Lon": 7.87395
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Polonnaruwa",
+        "Amount": 121600.0000,
+        "Lat": 81.033,
+        "Lon": 7.913
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Puttalam",
+        "Amount": 166300.0000,
+        "Lat": 79.825699,
+        "Lon": 8.0332
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Ratnapura",
+        "Amount": 229100.0000,
+        "Lat": 80.3862,
+        "Lon": "6.6931"
+    },
+    {
+        "Month": "January",
+        "Location": "Retail-Store-Trincomalee",
+        "Amount": 35000.0000,
+        "Lat": 81.249,
+        "Lon": 8.581
+    }
+]}

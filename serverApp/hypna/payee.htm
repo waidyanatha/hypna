@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>SPOT ON SOLUTIONS</title>
+
+<!--Graphics, Design, and Layout by Dacia Closson (2006). Modified by Nuwan Waidyanatha (2012). Copyright  Spot On Solutions, 2006.  All Rights Reserved.  Any past, present, or future products of Spot On Solutions are protected and may not be modified in any way without prior written consent of the designer or party responsible for its creation.  This includes removing or modifying our registered logo or name, copyright notice, or any other piece of work belonging to Spot On Solutions.  You may not reproduce this page without the designers written permission.-->
+
+
+
+    <meta charset="utf-8" />
+
+    <title>Spot On</title>
+
+        <meta name="Keywords" content="SPOT-ON, Auton Lab, LIRNEasia, Yazmi, technology, solutions, enterprises, organization, automation, planning, plan, system, affordable, reducing cost, software, upload data, optimal, evaluate input, resource planning, electrical, electronic, communications, project, Nuwan Waidyanatha, Sri Lanka ">
+
+        <meta name="description" content="Spot On Solutions (Private) Limited is a for profit company vested under the Registration of Companies Act in Sri Lanka. The company provides Information and Communications Products and Services">
+
+        <meta name="robots" content="all">
+
+        <script type="text/javascript" src="jsfrontend/jquery-1.8.3.js"></script>
+
+        <link rel="stylesheet" href="cs/main.css" media="screen" type="text/css">
+
+        <link rel="stylesheet" href="cs/mainprint.css" media="print" type="text/css">
+
+        <link href="cs/products.css" media="screen" rel="stylesheet" type="text/css"/>
+
+        <link rel="stylesheet" href="cs/style.css" type="text/css" media="screen" />
+
+       
+        <style media="screen" type="text/css">
+            td{
+
+                vertical-align: baseline;
+
+            }
+
+
+
+        </style>
+<script>
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+
+var token = null;
+
+function isLogin(){
+token = getCookie("token");
+//alert("UUUU------" + o);
+//token=document.cookie;
+//alert("token" + token);
+
+if(token == null){
+      //alert("Please Login First");
+      window.location = "index.htm";
+}
+}
+
+function logout(){
+        document.cookie = "token" + '=; Max-Age=0'
+        window.location = "index.htm";
+}
+
+</script>
+<script src="hypna/js/jquery.min.js"></script>
+<script src="jsfrontend/util.js"></script>
+
+<script src="jsfrontend/hypna.js"></script>
+<script type="text/javascript" src="jsfrontend/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="jsfrontend/transactions.js"></script>
+<script type="text/javascript" src="jsfrontend/OpenLayers.js"></script>
+
+</head>
+
+<body onload='isLogin(); tran_by_loc(); display_logos();'><div class="container">
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+        <div class="links">
+
+    <div id="search">
+<!--
+<form name="loginForm" method="get">
+
+         <font color="#ffffff" size="-1">Email: </font><br><br><input type="email" name="uname" id="uname" size="15" maxlength="50"/><br><br>
+
+        <font color="#ffffff" size="-1">Password:</font><br><br><input type="password" name="pwd" id="pwd" size="15" maxlength="50"/><br><br>
+-->
+        <font color="#ffffff" size="-1"></font><br><input type="button" id="log" value="Logout" onclick="logout()"/>
+<!--
+</form>
+
+-->
+	<br><br><br><br><br> <font color="#ffffff" size="-1"><a href="demos.htm">HELP?</a></font>
+        <br><br><br><br><br> <font color="#ffffff" size="-1"><a href="demos.htm"><<< BACK TO DEMOS</a></font>
+
+</div>
+
+
+
+</div>
+
+<div class="content">
+
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+<h1>Welcome to the HYPNA Mobile Payment DEMO</h1>
+
+
+<div id="menu">
+
+<ul class="navigation">
+
+        <li class="selected">
+                <a href="index.htm"><strong>HOME</strong></a>
+        </li>
+        <li>
+                <a href="transactions.htm"><strong>TRANSACTIONS</strong></a>
+        </li>
+        <li>
+                <a href="payee.htm"><strong>USER-TERMINALS</strong></a>
+        </li>
+        <li>
+                <a href="groups.htm"><strong>GROUPS</strong></a>
+        </li>
+        <li>
+                <a href="location.htm"><strong>LOCATION</strong></a>
+        </li>
+        </ul>
+</div>
+<div id="submenu">
+<!--
+<ul>
+        <li class="current" id="current_0" >
+              <a href="javascript:void(0);" class="submenuItem" id="submenuItem_0"><strong>submenu1</strong></a></li>
+         <li id="current_1" >
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_1"><strong>submenu2</strong></a></li>
+
+                        <li id="current_2">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_2"><strong>submenu3</strong></a></li>
+
+                        <li id="current_3">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_3"><strong>submenu4</strong></a></li>
+
+                        <li id="current_4">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_4"><strong>submenu5</strong></a></li>
+
+                        <li id="current_5">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_5"><strong>submenu6</strong></a></li>
+
+                    </ul>
+-->
+</div>
+  <table><tr>
+        <td><p>First Name: </p><input type="text" name="fname" id="fname" size="20" maxlength="50"/></td>
+        <td><p>Surname: </p><input type="text" name="lname" id="lname" size="30" maxlength="50"/></td>
+        <td><p>Phone: </p><input type="text" name="phone" id="phone" size="10" maxlength="10"/></td>
+        <td><p>Enter the criteria</p><input type="button" value="SEARCH" 
+            onclick="search(document.getElementById('fname').value, 
+                document.getElementById('lname').value, 
+                document.getElementById('phone').value)"/>
+    </tr></table>
+
+<div id="results"></div>
+
+    <!-- START ADD DIALOG -->
+    <h4><input type="button" value="ADD NEW" onclick="add();" /></h4>
+
+    <div class="box">
+        <header>
+            <h1>ADD NEW PAYEE</h1>
+            <a href="#" onclick="add();" ></a>
+        </header>
+        <section>
+            <form>
+                <fieldset>
+                    <label><p>First Name:</p></label>
+                        <input type="text" name="fname" id="addfname" size="20" maxlength="50"/></td>
+                    <label><p>Surname:</p></label>
+                        <input type="text" name="lname" id="addlname" size="30" maxlength="50"/></td>
+                    <label><p>Phone:</p>
+                        </label><input type="text" name="phone" id="addphone" size="10" maxlength="10"/></td>
+                    <label><p>Click to SAVE new payee</p></label>
+                        <input type="button" value="SAVE" 
+                        onclick="save(document.getElementById('addfname').value, 
+                        document.getElementById('addlname').value, 
+                        document.getElementById('addphone').value)"/>
+                </fieldset>
+            </form>
+        </section>
+    </div>
+</div>
+
+<!--
+
+<nav><div id="bottomlinks">
+
+<a href="index.htm">Home</a> |
+
+            <a href="about.htm">?Spot On</a> |
+
+                <a href="goals.htm">Our Goals</a> |
+
+            <a href="summary.htm">Executive Summary</a> |
+
+            <a href="projects.htm"> Projects</a> |
+
+            <a href="downloads.htm">Downloads</a> |
+
+            <a href="references.htm">References</a> |
+
+            <a href="contactus.htm">Contact Us</a>
+
+            </div></nav>
+
+    </div>
+
+</div>
+<textarea id="out" rows="4" cols="50">Results
+
+</textarea>
+
+-->
+
+<!-- Start of StatCounter Code for Default Guide -->
+
+<script src="jsfrontend/jquery.min.js"></script>
+
+                <script src="jsfrontend/util.js"></script>
+
+        <script src="jsfrontend/hypna.js"></script>
+</body>
+
+</html>
+

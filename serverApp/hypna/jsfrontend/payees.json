@@ -1,0 +1,28 @@
+{
+    "payees": [
+        {
+            "group": "Distributor",
+            "uuid": "D100001",
+            "fname": "Nuwan",
+            "lname": "Waidyanatha",
+            "phone": "773710394",
+            "IMEI": "1157234567"
+        },
+        {
+            "group": "Distributor",
+            "uuid": "D100002",
+            "fname": "Gehan",
+            "lname": "Dias",
+            "phone": "713710394",
+            "IMEI": "2510543468"
+        },
+        {
+            "group": "Distributor",
+            "uuid": "D100002",
+            "fname": "Madhuka",
+            "lname": "Udantha",
+            "phone": "723710394",
+            "IMEI": "90217843675"
+        }
+    ]
+}

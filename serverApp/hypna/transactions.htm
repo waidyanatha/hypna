@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>SPOT ON SOLUTIONS</title>
+
+<!--Graphics, Design, and Layout by Dacia Closson (2006). Modified by Nuwan Waidyanatha (2012). Copyright  Spot On Solutions, 2006.  All Rights Reserved.  Any past, present, or future products of Spot On Solutions are protected and may not be modified in any way without prior written consent of the designer or party responsible for its creation.  This includes removing or modifying our registered logo or name, copyright notice, or any other piece of work belonging to Spot On Solutions.  You may not reproduce this page without the designers written permission.-->
+
+
+
+    <meta charset="utf-8" />
+
+    <title>Spot On</title>
+
+        <meta name="Keywords" content="SPOT-ON, Auton Lab, LIRNEasia, Yazmi, technology, solutions, enterprises, organization, automation, planning, plan, system, affordable, reducing cost, software, upload data, optimal, evaluate input, resource planning, electrical, electronic, communications, project, Nuwan Waidyanatha, Sri Lanka ">
+
+        <meta name="description" content="Spot On Solutions (Private) Limited is a for profit company vested under the Registration of Companies Act in Sri Lanka. The company provides Information and Communications Products and Services">
+
+        <meta name="robots" content="all">
+
+	<script src="jsfrontend/jquery-1.3.2.debug.js" type="text/javascript"></script>
+    <script src="jsfrontend/json.htmTable.js" type="text/javascript"></script>
+    <script src="jsfrontend/json.debug.js" type="text/javascript"></script>
+    <link href="cs/default.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="jsfrontend/jquery-1.8.3.js"></script>
+
+        <link rel="stylesheet" href="cs/main.css" media="screen" type="text/css">
+
+        <link rel="stylesheet" href="cs/mainprint.css" media="print" type="text/css">
+
+        <link href="cs/products.css" media="screen" rel="stylesheet" type="text/css"/>
+
+        <link rel="stylesheet" href="cs/style.css" type="text/css" media="screen" />
+
+       
+        <style media="screen" type="text/css">
+            td{
+
+                vertical-align: baseline;
+
+            }
+
+
+
+        </style>
+<script>
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+  {
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+
+var token = null;
+
+function login(){
+
+var data = {"action":"login"};
+
+HypnaAppUtil.makeJsonRequestWithHeadersTest("GET","https://202.69.197.115:9443/hypna/login.jag",data,function(html) {
+$('#token').val(html.sessionId);
+$("#out").val(JSON.stringify(html));
+});
+
+}
+
+function isLogin(){
+token = getCookie("token");
+//alert("UUUU------" + o);
+//token=document.cookie;
+//alert("token" + token);
+
+if(token == null){
+      //alert("Please Login First");
+      window.location = "index.htm";
+}
+
+}
+
+function viewData(){
+
+var data = {"action":"viewData","token":token};
+
+HypnaAppUtil.makeJsonRequest("GET","https://202.69.197.115:9443/hypna/transaction.jag",data,function(html) {
+
+//var dataTable = {[]};
+//var dataInnerTable = {[]};
+//var length = html.length;
+
+//for(var i=0; i < length; i++){		
+					
+//	if(html.results[i].checked == true){
+						
+//	   dataInnerTable[i] = [{Create_Date:html.results[i].tran_date, Card_Number:html.results[i].card_num, Expire_Date:html.results[i].card_exp_dt, Amount:html.results[i].tran_amount,Locatio:html.results[i].tran_amount, States:html.results[i].tran_status}];
+//	}		
+//		dataTable += dataInnerTable;
+//		dataInnerTable = new jsonArray("[{}]"); 					 
+//}
+
+var employees = {
+    resultData: []
+};
+
+var someData = html.results;
+
+for(var i in someData) {
+
+    var item = someData[i];
+
+    var cardNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : cardNo,
+        "Amount"   : item.tran_amount,
+	"Amount Currency": item.tran_amt_curr,
+	"Expire Date" : item.card_exp_dt,
+	"Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+}
+
+$('#DynamicGridLoading').hide();
+$('#DynamicGrid').empty();
+$('#DynamicGrid').append(CreateTableView(employees.resultData, "lightPro", true)).fadeIn();
+//$("#outview").val(JSON.stringify(html));
+//$("#outview").val(JSON.stringify(employees.resultData));
+});
+}
+
+
+var locationByUuid = null;
+var test;
+function getLocation(locuuid) {
+
+var locuuid = locuuid;
+
+var data = {"action":"getLocation","token":token};
+
+HypnaAppUtil.makeJsonRequestGetLocation("GET","https://202.69.197.115:9443/hypna/location.jag",data,function(htmlo) {
+locationByUuid = {"vv":htmlo.results[0].loc_name};
+test = locationByUuid.vv;
+},locuuid);
+}
+
+
+function lastData(){
+
+var data = {"action":"lastData","token":token};
+
+HypnaAppUtil.makeJsonRequest("GET","https://202.69.197.115:9443/hypna/transaction.jag",data,function(html) {
+ 
+var z = html.results[0].card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+var dataFilter = [{Create_Date:html.results[0].tran_date, Card_Number:z, Expire_Date:html.results[0].card_exp_dt, Amount:html.results[0].tran_amount, Amount_currency:html.results[0].tran_amt_curr, Locatio:html.results[0].loc_uuid, States:html.results[0].tran_status, First:html.results[0].user_uuid}];
+
+$('#DynamicGridlast').empty();
+$('#DynamicGridlast').append(CreateDetailView(dataFilter,"lightPro",true)).fadeIn();
+$('#DynamicGridLoadinglast').hide();
+//$("#outlast").val(JSON.stringify(html));
+
+});
+}
+
+
+function viewSearchData(location, status, cardno) {
+
+var tfromv = $('#stdate').val();
+var ttov = $('#endate').val();
+$('#DynamicGridLoadingSearch').show();
+var data = {"action":"viewSearchData","token":token};
+HypnaAppUtil.makeJsonRequestForTranSearch("GET","https://202.69.197.115:9443/hypna/transaction.jag",data,function(html) {
+
+var employees = {
+    resultData: []
+};
+
+var someData = html.results;
+
+for(var i in someData) {
+
+    var item = someData[i];
+//alert(item.card_num);
+    var crdNo;/* = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+ */
+ var loc = location.value;
+ var stat = status.value;
+ var card = cardno.value;
+//alert(loc + "  eee " + loc.length);
+if(loc.length != 0) {
+ if(card.length != 0) {
+  if(loc == item.tran_status && card == crdNo && stat == item.tran_status) {
+	crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  } else if(loc == item.tran_status && card == crdNo && stat == "all") {
+        crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  }
+
+ } else {
+	if(loc == item.tran_status && stat == item.tran_status) {
+	crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  } else if(loc == item.tran_status && stat == "all") {
+        crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  }
+
+ }
+} else if(card.length != 0) {
+ if(loc.length != 0) {
+  if(loc == item.tran_status && card == crdNo && stat == item.tran_status) {
+	crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  } else if(loc == item.tran_status && card == crdNo && stat == "All") {
+        crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  }
+ } else {
+        if(card == crdNo && stat == item.tran_status) {
+	crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  } else if(card == crdNo && stat == "all") {
+        crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+    employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  }
+
+ }
+} 
+
+else {
+//alert(stat + " ooo ");
+     if(stat == "all") {
+	crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+//alert("else");
+	employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  } else if(stat == item.tran_status) {
+//alert(stat);
+        crdNo = item.card_num.substring(0,4) + "-" + html.results[0].card_num.substring(4,6) + "xx" + "-" + "xxxx" + "-" + html.results[0].card_num.substring(12);
+
+//alert("else");
+        employees.resultData.push({ 
+        "Card Number" : crdNo,
+        "Amount"   : item.tran_amount,
+	"Currency" : item.tran_amt_curr,
+        "Expire Date" : item.card_exp_dt,
+        "Location" : item.tran_status,
+        "Status"   : item.tran_status,
+    });
+  }
+
+}
+  
+}
+
+//alert(employees.resultData + " pp ");
+$('#DynamicGridSearch').empty();
+$('#DynamicGridSearch').append(CreateTableView(employees.resultData,"lightPro",true)).fadeIn();
+$('#DynamicGridLoadingSearch').hide();
+
+$("#outsearchdata").val(JSON.stringify(html));
+},tfromv,ttov);
+}
+
+
+function logout(){
+	document.cookie = "token" + '=; Max-Age=0'
+	window.location = "index.htm";
+}
+</script>
+
+<script type="text/javascript"> 
+
+function showHide(divId){
+
+    var theDiv = document.getElementById(divId);
+    var last = document.getElementById("lastpayment");
+    var history = document.getElementById("paymenthistory");
+    var search = document.getElementById("searchData");
+
+	if(divId == 'lastpayment'){
+		history.style.display="none";
+		search.style.display="none";	
+		last.style.display="block";
+		return true;
+	}
+	if(divId == 'paymenthistory'){
+                last.style.display="none";
+                search.style.display="none";  
+		history.style.display="block";  
+		return true;
+        }
+	if(divId == 'searchData'){
+		history.style.display="none";
+                last.style.display="none";  
+		search.style.display="block"; 
+		$('#DynamicGridLoadingSearch').hide();
+		return true;
+        }
+}
+</script>
+
+<script src="hypna/js/jquery.min.js"></script>
+<script src="jsfrontend/util.js"></script>
+
+<script src="jsfrontend/hypna.js"></script>
+<script type="text/javascript" src="jsfrontend/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="jsfrontend/transactions.js"></script>
+<script type="text/javascript" src="jsfrontend/OpenLayers.js"></script>
+
+</head>
+
+<body onload='isLogin(); showHide("lastpayment"); lastData(); tran_by_loc(); display_logos();'><div class="container">
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+        <div class="links">
+<div id="search">
+<!--
+<form name="loginForm" method="get">
+
+         <font color="#ffffff" size="-1">Email: </font><br><br><input type="email" name="uname" id="uname" size="15" maxlength="50"/><br><br>
+
+        <font color="#ffffff" size="-1">Password:</font><br><br><input type="password" name="pwd" id="pwd" size="15" maxlength="50"/><br><br>
+-->
+
+        <font color="#ffffff" size="-1"></font><br><input type="button" id="log" value="Logout" onclick="logout()"/>
+<!--
+</form>
+
+-->
+	<br><br><br><br><br> <font color="#ffffff" size="-1"><a href="help.htm">HELP?</a></font>	
+
+        <br><br><br><br><br> <font color="#ffffff" size="-1"><a href="demos.htm"><<< BACK TO DEMOS</a></font>
+
+</div>
+
+
+
+</div>
+
+<div class="content">
+
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+<h1>Welcome to the HYPNA Mobile Payment DEMO</h1>
+
+
+<div id="menu">
+
+<ul class="navigation">
+
+<li><a>
+
+	</li>
+        <li class="selected">
+                <a href="index.htm"><strong>HOME</strong></a>
+        </li>
+        <li>
+                <a href="transactions.htm"><strong>TRANSACTIONS</strong></a>
+        </li>
+        <li>
+                <a href="payee.htm"><strong>USER-TERMINALS</strong></a>
+        </li>
+        <li>
+                <a href="groups.htm"><strong>GROUPS</strong></a>
+        </li>
+        <li>
+                <a href="location.htm"><strong>LOCATION</strong></a>
+        </li>
+        </ul>
+</div>
+<div id="submenu">
+
+		<ul>
+		        <li class="current" id="current_0" >
+
+             		    <a href="javascript:void(0);" class="submenuItem" id="submenuItem_0" onclick="showHide('lastpayment'); lastData();"><strong>Last Payment</strong></a></li>
+
+         		<li id="current_1" >
+
+                            <a href="javascript:void(1);" class="submenuItem" id="submenuItem_1" onclick="showHide('paymenthistory'); viewData();"><strong>Payment History</strong></a></li>
+
+                        <li id="current_2">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_2" onclick="showHide('searchData')"><strong>Search</strong></a></li>
+
+               </ul>
+
+</div>
+
+<div id="lastpayment">
+<h1>LAST PAYMENT!</h1>
+<div id="DynamicGridlast" >
+        <div id="DynamicGridLoadinglast" >
+            <img src="img/loading.gif" /><span> Loading Data... </span>
+        </div>
+</div>
+<!--
+<textarea id="outlast" rows="15" cols="80">Results</textarea>
+-->
+</div>
+
+<div id="paymenthistory">
+<h1>PAYMENT HISTORY!</h1>
+<table>
+	<tr>
+		<td>
+			<div id="mapdiv" style="height:425px; width:300px; " ><div id="kk">ss</div></div>
+	        </td>
+		<td>
+			<div id="DynamicGrid">
+			        <div id="DynamicGridLoading" >
+      				      <img src="img/loading.gif" /><span> Loading Data... </span>
+       			        </div>
+			</div>
+
+<!--
+<textarea id="outview" rows="25" cols="60">Results</textarea>
+-->
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div id="searchData">
+<h1>SEARCH!</h1>
+<form name ="viewForm" method="get">
+    <!-- START SEARCH SECTION -->
+    <table><tr>
+<!--        <td><p>Status: </p><input type="text" name="status" id="status" size="10" maxlength="10"/></td> -->
+        <td><p>Status: </p>
+            <select id='status'>
+                <option value="all">All</option>
+                <option value="Complete">Complete</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
+		<option value="progress">Progress</option>
+            </select>
+        </td>
+        <td><p>Start Date: </p><input type="date" name="stdate" id="stdate" value="2013-01-01" size="10" maxlength="10"/></td>
+        <td><p>End Date: </p><input type="date" name="endate" id="endate" value="2013-01-31" size="10" maxlength="10"/></td>
+        <td><p>Location: </p><input type="text" name="location" id="location" size="15" maxlength="15"/></td>
+	<td><p>Card No: </p><input type="text" name="cardno" id="cardno" size="16" maxlength="16"/></td>
+        <td><p>Enter the criteria</p><input type="button" value="SEARCH" onclick="viewSearchData(location, status, cardno)"/></td>
+    </tr></table>
+ </form>
+<table><tr><td>
+<!-- <div id="mapdiv" style="height:425px; width:300px; " ></div> -->
+<!--    <div id="results" style=""></div>
+END SEARCH SECTION -->
+    </td><td>
+<!--
+    <iframe width='500' height='425' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0Au2sKF3XJgJwdG91T1BjMm1iX1ZkTjVKZDViT21UNnc&single=true&gid=1&output=html&widget=true'></iframe>
+-->
+			<div id="DynamicGridSearch" style="height:500px; overflow: auto;">
+                                <div id="DynamicGridLoadingSearch" >
+                                      <img src="img/loading.gif" /><span> Loading Data... </span>
+                                </div>
+                        </div>
+
+
+<!-- <textarea id="outsearchdata" rows="25" cols="60">Results</textarea> -->
+
+</td>
+    </tr></table>
+</div>
+
+</div>
+<!--
+<nav>
+
+<div id="bottomlinks">
+
+<a href="index.htm">Home</a> |
+
+            <a href="about.htm">?Spot On</a> |
+
+                <a href="goals.htm">Our Goals</a> |
+
+            <a href="summary.htm">Executive Summary</a> |
+
+            <a href="projects.htm"> Projects</a> |
+
+            <a href="downloads.htm">Downloads</a> |
+
+            <a href="references.htm">References</a> |
+
+            <a href="contactus.htm">Contact Us</a>
+
+            </div></nav>
+
+    </div>
+
+</div>  -->
+
+
+<!-- Start of StatCounter Code for Default Guide -->
+
+<script src="jsfrontend/jquery.min.js"></script>
+
+                <script src="jsfrontend/util.js"></script>
+
+        <script src="jsfrontend/hypna.js"></script>
+</body>
+
+</html>
+

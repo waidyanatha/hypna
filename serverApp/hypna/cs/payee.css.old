@@ -1,0 +1,38 @@
+  /*** pop-up div to cover entire area ***/
+.divModalDialog  {
+    position:fixed;
+    top:0;
+    left:10;
+    width:100%;
+    height:100%;
+    /*! important !*/
+    display:none;
+    /* last attribute set darkness on scale: 0...1.0 */
+    background-color:#FFFFFF;
+    text-align:center;
+    z-index:101;
+}
+        
+/*** ! target attribute does the job ! ***/
+.divModalDialog:target  { display:block; }
+        
+/*** virtual frame containing controls, image and caption ***/
+.divModalDialog div  {
+    /* either absolute or fixed */
+    position:fixed;
+    top:5%;
+    width:100%;
+    height:80%;
+    /* rounded corners */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    z-index:102;
+}
+        
+.divModalDialog input{
+    font-size: 14px;
+    margin: 5px 5px;
+    color: #4D6880;
+    line-height:16px;
+}

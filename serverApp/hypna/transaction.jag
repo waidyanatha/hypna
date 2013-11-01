@@ -1,0 +1,318 @@
+<%
+
+include("model/dbinit.jag");
+include("model/transaction.jag");
+var action = request.getParameter('action');
+var token = request.getParameter('token');
+var cardNum = request.getHeader("cardNum");
+var pin = request.getHeader("pin");
+var expDate = request.getHeader("expDate");
+var amount = request.getHeader("amount");
+var user = request.getHeader("user");
+var tfrom = request.getHeader("from");
+var tto = request.getHeader("to");
+var locationName = request.getHeader("locationName");
+var longitude = request.getHeader("longitude");
+var latitude = request.getHeader("latitude");
+var tpk = request.getHeader("tpk");
+var lpk = request.getHeader("lpk");
+var currency = "LKR";
+
+var log = new Log();
+//var login = require("login");
+var mylogin;
+log.info(action);
+var key1;
+var key2;
+var bankURL = "https://202.69.197.115:9443/bank/";
+
+function addData() {
+if(isLogin()) {
+	if(cardNum!=null && amount !=null && user !=null && expDate !=null && pin !=null)
+		log.info("xx"+getPK());
+		var db_qury = get_query_insert_tranaction(getPK(),user,amount,cardNum,expDate,pin);
+		log.info(db_qury);
+		db.query(db_qury);
+		return {
+			"error":false,
+			"tranaction":"Prgress"
+		};
+	} 
+}
+
+function updateLocData() {
+if(isLogin()) {
+	if(tpk !=null && lpk == null && locationName!=null ){
+		var locId = getLocationUUID(locationName);
+		lpk = locId;
+	}	if(tpk !=null && lpk != null){
+		//log.info("xx"+getPK());
+		var db_qury = update_query_trans_location(tpk,lpk);
+		log.info(db_qury);
+		db.query(db_qury);
+		return {
+			"error":false,
+			"tranactionUUID":tpk,
+			"locationUUID":lpk,
+			"success":true,
+			"tranaction":"Updated on "+tpk+" with "+lpk
+		};
+	} return {
+			"error":true,
+			"tranaction":"Please Pass loc UUID and Tranaction UUID"
+		};
+}
+return {
+			"error":true,
+			"tranaction":"Please Login First"
+		};
+}
+function addMasterData() {
+if(isLogin()) {
+	if(cardNum!=null && amount !=null && user !=null && expDate !=null && pin !=null)
+		var newPK = getPK();
+		log.info("Adding Master Data, need PK "+newPK);
+		var db_qury = get_query_insert_tranaction(newPK,user,amount,cardNum,expDate,pin);
+		log.info(db_qury);
+		db.query(db_qury);
+		log.info("hypna to Bank communication Starting");
+		var bankLogin = get(bankURL+"login.jag?action=login",null,{username: "admin", password: "admin"},"json");
+		var bankSkey=bankLogin.data.sessionId;
+		log.info(bankSkey);
+		log.info("hypna to Bank communication in Login");
+		var headers = {"expDate": expDate,"amount": amount,"pin": pin,"cardNum": cardNum};
+		var bankTransaction = get(bankURL+"transaction.jag?action=addData&token="+bankSkey,null,headers,"json");
+		var bankTransStatus=bankTransaction.data.tranaction;
+		log.info(bankTransStatus);
+		log.info("hypna DB updating with Bank Respond");
+		var db_qury_up = get_query_update_tranaction_status(newPK,bankTransStatus);
+		log.info(db_qury_up);
+		db.query(db_qury_up);
+		return {
+			"error":false,
+			"transactionId":"hyp-tran-"+newPK,
+			"tranaction":"Transaction id "+ newPK + " is "+bankTransStatus
+		};
+	} 
+	
+}
+function addMasterDataLtr() {
+if(isLogin()) {
+	if(cardNum!=null && amount !=null && user !=null && expDate !=null && pin !=null && tto!=null )
+	log.info(tto);
+		var newPK = getPK();
+		log.info("Adding Master Data for late date, need PK "+newPK);
+		var db_qury = get_query_insert_tranaction_ltr(newPK,user,amount,cardNum,expDate,pin,tto);
+		log.info(db_qury);
+		db.query(db_qury);
+		log.info("hypna to Bank communication Starting");
+		var bankLogin = get(bankURL+"login.jag?action=login",null,{username: "admin", password: "admin"},"json");
+		var bankSkey=bankLogin.data.sessionId;
+		log.info(bankSkey);
+		log.info("hypna to Bank communication in Login");
+		var headers = {"expDate": expDate,"amount": amount,"pin": pin,"cardNum": cardNum};
+		var bankTransaction = get(bankURL+"transaction.jag?action=addData&token="+bankSkey,null,headers,"json");
+		var bankTransStatus=bankTransaction.data.tranaction;
+		log.info(bankTransStatus);
+		log.info("hypna DB updating with Bank Respond");
+		var db_qury_up = get_query_update_tranaction_status(newPK,bankTransStatus);
+		log.info(db_qury_up);
+		db.query(db_qury_up);
+		return {
+			"error":false,
+			"transactionId":"hyp-tran-"+newPK,
+			"tranaction":"Transaction id "+ newPK + " is later pay "+bankTransStatus
+		};
+	} 
+	
+}
+//with location 
+function addMasterDataWithLocation() {
+if(isLogin()) {
+	if(cardNum!=null && amount !=null && user !=null && expDate !=null && pin !=null && locationName != null)
+		var newPK = getPK();
+		var locId = getLocationUUID(locationName);
+		log.info("Adding Master Data with location, need PK "+newPK);
+		var db_qury = get_query_insert_tranaction_locationName(newPK,user,amount,cardNum,expDate,pin,locId);
+		log.info(db_qury);
+		db.query(db_qury);
+		log.info("hypna to Bank communication Starting");
+		var bankLogin = get(bankURL+"login.jag?action=login",null,{username: "admin", password: "admin"},"json");
+		var bankSkey=bankLogin.data.sessionId;
+		log.info(bankSkey);
+		log.info("hypna to Bank communication in Login");
+		var headers = {"expDate": expDate,"amount": amount,"pin": pin,"cardNum": cardNum};
+		var bankTransaction = get(bankURL+"transaction.jag?action=addData&token="+bankSkey,null,headers,"json");
+		var bankTransStatus=bankTransaction.data.tranaction;
+		log.info(bankTransStatus);
+		log.info("hypna DB updating with Bank Respond");
+		var db_qury_up = get_query_update_tranaction_status(newPK,bankTransStatus);
+		log.info(db_qury_up);
+		db.query(db_qury_up);
+		return {
+			"error":false,
+			"tranaction":bankTransStatus
+		};
+	} 
+	
+}
+
+
+function viewData() {
+	if(isLogin()) {
+	var db_qury = db_query_tranaction;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+}else{
+		return {
+		"error" : true,
+		"results" : "Please Login First"
+		};
+	}
+}
+
+function viewSearchData() {
+	if(isLogin()) {
+		if(tfrom != null && tto !=null){
+	//var db_qury = get_query_tranaction_bydate('Madhuka','to 2013-03-04',' from 2013-02-04 00:18;30');
+	var db_qury = get_query_tranaction_bydate('Madhuka',tto,tfrom);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+	}else{
+		return {
+		"error" : true,
+		"results" : "Please Pass the FromDate to Todate"
+		};
+	}
+}else{
+		return {
+		"error" : true,
+		"results" : "Please Login First"
+		};
+	}
+}
+
+function getPK() {
+	if(isLogin()) {
+		log.info(db_query_lastIndex_tranaction);
+		var trnaction = db.query(db_query_lastIndex_tranaction);
+		log.info(trnaction);
+		var n=trnaction[0].tran_uuid.split("-");
+		log.info(n[2]);
+		var pk = parseInt(n[2])+1;
+		return pk;
+	} else{
+		return {
+		"error" : true,
+		"results" : "Please Login First"
+		};
+	}
+}
+
+function lastData() {
+	log.info("last PK is " + getPK());
+	var db_qury = db_query_last_tranaction;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+
+}
+
+function getLocationUUID(locationName) {
+	if(isLogin()) {
+	log.info("locationName is " + locationName);
+	var db_qury = get_loc_uuid(locationName);
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return results[0].loc_uuid;
+		} else{
+		return {
+		"error" : true,
+		"results" : "Please Login First"
+		};
+	}
+
+}
+
+
+function isLogin(){
+	//log.info(token + " "+session.get('key1'));
+	if(token == application.get('key1')) {		
+		return true;
+	} else {
+		//print(invokeError("please Login first"));
+		return false;
+	}
+}
+function invokeisLogin() {
+//	mylogin = new login.isLogin(key1);
+//	log.info(mylogin);
+//	return mylogin;
+}
+
+function invokeError(msg) {
+	log.info(msg)
+	return {
+		"error" : true,
+		"errorMsg" : msg
+	};
+}
+
+log.info("action="+action+".");
+
+switch(action) {
+	case "viewData":
+		print(viewData());
+		break;
+	case "viewSearchData":
+		print(viewSearchData());
+		break;
+	case "addData":
+		print(addData());
+		break;
+	case "updateLocData":
+		print(updateLocData());
+		break;
+	case "addMasterData":
+		print(addMasterData());
+		break;
+	case "addMasterDataLtr":
+		print(addMasterDataLtr());
+		break;
+	case "addMasterDataWithLocation":
+		print(addMasterDataWithLocation());
+		break;
+	case "logout":
+		print(invokelogout());
+		break;
+	case "isLogin":
+		print(invokeisLogin());
+		break;
+	case "getPK":
+		print(getPK());
+		break;
+	case "lastData":
+		print(lastData());
+		break;
+	default:
+		print(invokeError("action not define"));
+}
+
+// print(invokeisLogin());
+// print(invokeloginWithRememberMe());
+//print(invokegetAuthenticatorName());
+//print(invokelogout());
+// print(invokeisLogin());
+
+%>

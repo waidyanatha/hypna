@@ -1,0 +1,282 @@
+<%
+
+include("model/dbinit.jag");
+include("model/location.jag");
+var action = request.getParameter('action');
+var token = request.getParameter('token');
+var locname = request.getHeader("locname");
+var longitude = request.getHeader("longitude");
+var latitude = request.getHeader("latitude");
+var locuuid = request.getHeader("locuuid");
+var addr = request.getHeader("addr");
+var user = request.getHeader("user");
+var currency = "LKR";
+
+var log = new Log();
+//var login = require("login");
+var mylogin;
+log.info(action);
+var key1;
+var key2;
+/*
+
+function addData() {
+	if(isLogin()) {
+		if(cardNum != null && amount != null && user != null && expDate != null && pin != null)
+			log.info("xx" + getPK());
+		var db_qury = get_query_insert_tranaction(getPK(), user, amount, cardNum, expDate, pin);
+		log.info(db_qury);
+		db.query(db_qury);
+		return {
+			"error" : false,
+			"tranaction" : "Prgress"
+		};
+	}
+}
+
+var bankURL = "http://192.168.56.1:9763/bank/";
+function addMasterData() {
+	if(isLogin()) {
+		if(cardNum != null && amount != null && user != null && expDate != null && pin != null)
+			var newPK = getPK();
+		log.info("Adding Master Data, need PK " + newPK);
+		var db_qury = get_query_insert_tranaction(newPK, user, amount, cardNum, expDate, pin);
+		log.info(db_qury);
+		db.query(db_qury);
+		log.info("hypna to Bank communication Starting");
+		var bankLogin = get(bankURL + "login.jag?action=login", null, {
+			username : "admin",
+			password : "admin"
+		}, "json");
+		var bankSkey = bankLogin.data.sessionId;
+		log.info(bankSkey);
+		log.info("hypna to Bank communication in Login");
+		var headers = {
+			"expDate" : expDate,
+			"amount" : amount,
+			"pin" : pin,
+			"cardNum" : cardNum
+		};
+		var bankTransaction = get(bankURL + "transaction.jag?action=addData&token=" + bankSkey, null, headers, "json");
+		var bankTransStatus = bankTransaction.data.tranaction;
+		log.info(bankTransStatus);
+		log.info("hypna DB updating with Bank Respond");
+		var db_qury_up = get_query_update_tranaction_status(newPK, bankTransStatus);
+		log.info(db_qury_up);
+		db.query(db_qury_up);
+		return {
+			"error" : false,
+			"tranaction" : bankTransStatus
+		};
+	}
+
+}*/
+
+
+function listlocations() {
+	if(isLogin()) {
+		var db_qury = db_query_location;
+		log.info(db_qury);
+		var results = db.query(db_qury);
+		return {
+			"error" : false,
+			"results" : results
+		};
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+function listlocationNames() {
+	if(isLogin()) {
+		var db_qury = db_query_location_name;
+		log.info(db_qury);
+		var results = db.query(db_qury);
+		return {
+			"error" : false,
+			"results" : results
+		};
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+function getshops() {
+	log.info(longitude);
+	if(isLogin()) {
+		if(longitude != null) {
+			var db_qury = get_query_from_location_ard_lat(longitude);
+			log.info(db_qury);
+			var results = db.query(db_qury);
+			return {
+				"error" : false,
+				"results" : results
+			};
+		} else {
+			return {
+				"error" : true,
+				"results" : "Please enter longitude"
+			};
+		}
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+function getLocation() {
+	log.info(locuuid);
+	if(isLogin()) {
+		if(locuuid != null) {
+			var db_qury = get_query_from_location_locuuid(locuuid);
+			log.info(db_qury);
+			var results = db.query(db_qury);
+			return {
+				"error" : false,
+				"results" : results
+			};
+		} else {
+			return {
+				"error" : true,
+				"results" : "Please enter locuuid"
+			};
+		}
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+
+function addLocation() {
+	log.info(longitude+locname+latitude+" is adding new Location");
+	if(isLogin()) {
+		if(locname !=null && longitude != null && latitude != null){
+		var newPK = getPK();
+		log.info("Adding Location Data, need PK "+newPK);
+			var db_qury = get_query_insert_location(newPK,locname,longitude,latitude,'addr');
+			log.info(db_qury);
+			var results = db.query(db_qury);
+			return {
+				"error" : false,
+				"results" : 'hyp-loc-'+newPK
+			};
+	}else {
+		return {
+			"error" : true,
+			"results" : "Please Pass longitude and latitude for Location Name "
+		};
+	}
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+function getPK() {
+	if(isLogin()) {
+		log.info(db_query_lastIndex_location);
+		var trnaction = db.query(db_query_lastIndex_location);
+		log.info(trnaction);
+		var n = trnaction[0].loc_uuid.split("-");
+		log.info(n[2]);
+		var pk = parseInt(n[2]) + 1;
+		return pk;
+	} else {
+		return {
+			"error" : true,
+			"results" : "Please Login First"
+		};
+	}
+}
+
+function lastData() {
+	log.info("last PK is " + getPK());
+	var db_qury = db_query_last_location;
+	log.info(db_qury);
+	var results = db.query(db_qury);
+	return {
+		"error" : false,
+		"results" : results
+	};
+
+}
+
+function isLogin() {
+	//log.info(token + " "+session.get('key1'));
+	if(token == application.get('key1')) {
+		return true;
+	} else {
+		//print(invokeError("please Login first"));
+		return false;
+	}
+}
+
+function invokeisLogin() {
+	//	mylogin = new login.isLogin(key1);
+	//	log.info(mylogin);
+	//	return mylogin;
+}
+
+function invokeError(msg) {
+	log.info(msg)
+	return {
+		"error" : true,
+		"errorMsg" : msg
+	};
+}
+
+switch(action) {
+	case "listlocations":
+		print(listlocations());
+		break;
+	case "listlocationNames":
+		print(listlocationNames());
+		break;
+	case "getLocation":
+		print(getLocation());
+		break;
+	case "getshop":
+		print(getshop());
+		break;
+	case "getshops":
+		print(getshops());
+		break;
+	case "addLocation":
+		print(addLocation());
+		break;
+	case "logout":
+		print(invokelogout());
+		break;
+	case "isLogin":
+		print(invokeisLogin());
+		break;
+	case "getPK":
+		print(getPK());
+		break;
+	case "lastData":
+		print(lastData());
+		break;
+	default:
+		print(invokeError("action not define"));
+}
+
+// print(invokeisLogin());
+// print(invokeloginWithRememberMe());
+//print(invokegetAuthenticatorName());
+//print(invokelogout());
+// print(invokeisLogin());
+
+%>

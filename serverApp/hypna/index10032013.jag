@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Hypna API</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		</head>
+	<body>
+<h2>Hypna API</h2>
+		<p><input type="button" id="log" value="Login" onclick="Hypna.login();"/></p>
+		<p><input type="button" id="log" value="lastData" onclick="Hypna.lastData();"/>|
+		<input type="button" id="log" value="getPK" onclick="Hypna.getPK();"/>|
+		<input type="button" id="log" value="viewData" onclick="Hypna.viewData();"/></p>
+		<p><input type="button" id="log" value="addData" onclick="Hypna.addData();"/>|
+		<input type="button" id="log" value="addMasterData" onclick="Hypna.addMasterData();"/>|
+			<input type="button" id="log" value="ResetDB" onclick="Hypna.resetDB();"/>|
+			<input type="button" id="log" value="resetDBCardTable" onclick="Hypna.resetDBCardTable();"/>|</P>
+			<p><input type="button" id="log" value="verifyCard" onclick="Hypna.verifyCard();"/></p>
+		
+ <p>Token: <input type="text" name="token" id="token"/>
+ 	<br/>Card Number: <input type="text" name="cardnumber" id="cardnumber" value="1234123412341234"/>
+ </p>	
+<textarea id="out" rows="4" cols="50">Results
+</textarea>
+				
+	     <script src="js/jquery.min.js"></script>
+		<script src="js/util.js"></script>
+	<script src="js/hypna.js"></script>
+	</body>
+<html>

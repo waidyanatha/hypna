@@ -1,0 +1,30 @@
+<%
+//date 
+var log = new Log();
+var d = new Date();
+ var year, month, day,hour,mins,sec;
+  year = String(d.getFullYear());
+        month = String(d.getMonth() + 1);
+        if (month.length == 1) {
+            month = "0" + month;
+        }
+        day = String(d.getDate());
+        if (day.length == 1) {
+            day = "0" + day;
+        }
+        hour = String(d.getHours());
+        if (hour.length == 1) {
+            hour = "0" + hour;
+        }
+                mins = String(d.getMinutes());
+        if (mins.length == 1) {
+            mins = "0" + mins;
+        }
+                sec = String(d.getSeconds());
+        if (sec.length == 1) {
+            sec = "0" + sec;
+        }
+        var strDate=year + "-" + month + "-" + day +" "+hour+":"+mins+":"+sec;
+log.info(year + "-" + month + "-" + day +" "+hour+":"+mins+":"+sec);
+
+%>

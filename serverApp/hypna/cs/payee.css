@@ -1,0 +1,38 @@
+    div.box {
+        width:          400px;
+        height:         400px;
+        margin:         20px;
+        float:          top;
+        border:         1px solid #ccc;
+        border-radius:  6px;
+        display:        none;
+    }
+    
+    div.box > header {
+        height:         30px;
+        padding:        10px;
+        background:     #777;
+        color:          #333;
+    }
+    div.box > header > h1 {
+        float:          left;
+        font-size:      14px;
+        font-weight:    normal;
+    }
+    div.box > header > a {
+        display:        inline-block;
+        float:          right;
+        width:          11px;
+        height:         11px;
+        margin-top:     10px;
+        background:     url(http://www.geocaching.com/images/stockholm/mini/close.gif) no-repeat 0 0;
+    }
+
+    div.box > section {
+        padding:        10px;
+    }
+    div.box > section form, div.box > section fieldset {
+        margin:         0;
+        padding:        0;
+        border:         0;
+    }

@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Hypna API</title>
+		<link rel="shortcut icon" href="favicon.ico" />
+		</head>
+	<body>
+<h2>Hypna API</h2>
+		<p><input type="button" id="log" value="Login" onclick="Hypna.login();"/></p>
+		<p><input type="button" id="log" value="lastData" onclick="Hypna.lastData();"/>|
+		<input type="button" id="log" value="getPK" onclick="Hypna.getPK();"/>|
+		<input type="button" id="log" value="viewData" onclick="Hypna.viewData();"/>|
+		<input type="button" id="log" value="viewSearchData" onclick="Hypna.viewSearchData();"/> 
+		to : <input type="text" id="tto" value="2013-03-24"/> from :<input type="text" id="tfrom" value="2013-02-24"/> </p>
+		<p><input type="button" id="log" value="addData" onclick="Hypna.addData();"/>|
+		<input type="button" id="log" value="addMasterData" onclick="Hypna.addMasterData();"/>|
+		<input type="button" id="log" value="addMasterDataLtr" onclick="Hypna.addMasterDataLtr();"/>|
+		<input type="button" id="log" value="addMasterDataWithLocation" onclick="Hypna.addMasterDataWithLocation();"/>|
+		<br/>
+			<input type="button" id="log" value="ResetDB" onclick="Hypna.resetDB();"/>|
+			<input type="button" id="log" value="resetDBCardTable" onclick="Hypna.resetDBCardTable();"/>|</P>
+			<p><input type="button" id="log" value="verifyCard" onclick="Hypna.verifyCard();"/></p>
+			
+			<p>
+			tUUID : <input type="text" id="tUUID" value="hyp-tran-10"/> 
+			lUUID :<input type="text" id="lUUID" value="hyp-loc-7"/>
+			locationName :<input type="text" id="locname" value="Retail-Store-Kalmunai"/>
+			<input type="button" id="log" value="updateLocData" onclick="Hypna.updateLocData();"/>
+			<input type="button" id="log" value="updateLocNameData" onclick="Hypna.updateLocNameData();"/>
+			</p>
+			
+			<h3>Location API</h3>
+		<p><input type="button" id="log" value="listlocations" onclick="Hypna.listlocations();"/>
+		locUUID: <input type="text" id="locuuid" value="hyp-loc-10"/>
+		<input type="button" id="log" value="getLocation" onclick="Hypna.getLocation();"/>
+		<input type="button" id="log" value="listlocationNames" onclick="Hypna.listlocationNames();"/>
+		<br/>
+		longitude: <input type="text" name="longitude" id="longitude" value="80"/>
+		<input type="button" id="log" value="getshops" onclick="Hypna.getshops();"/></p>
+		location Name: <input type="text" name="locname" id="locname" value="Retail-Store-Katunayaka"/>
+		latitude: <input type="text" name="latitude" id="latitude" value="60"/>
+		<p><input type="button" id="log" value="lastLocData" onclick="Hypna.lastLocData();"/>|
+		<input type="button" id="log" value="getLocPK" onclick="Hypna.getLocPK();"/>|
+		<input type="button" id="log" value="addLocationData" onclick="Hypna.addLocationData();"/>|</p>
+		
+		
+ <p>Token: <input type="text" name="token" id="token"/>
+ 	<br/>Card Number: <input type="text" name="cardnumber" id="cardnumber" value="1234123412341234"/>
+ </p>	
+<textarea id="out" rows="4" cols="50">Results
+</textarea>
+				
+	     <script src="js/jquery.min.js"></script>
+		<script src="js/util.js"></script>
+	<script src="js/hypna.js"></script>
+	</body>
+<html>

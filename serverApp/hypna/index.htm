@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <title>SPOT ON SOLUTIONS</title>
+
+<!--Graphics, Design, and Layout by Dacia Closson (2006). Modified by Nuwan Waidyanatha (2012). Copyright  Spot On Solutions, 2006.  All Rights Reserved.  Any past, present, or future products of Spot On Solutions are protected and may not be modified in any way without prior written consent of the designer or party responsible for its creation.  This includes removing or modifying our registered logo or name, copyright notice, or any other piece of work belonging to Spot On Solutions.  You may not reproduce this page without the designers written permission.-->
+
+
+
+    <meta charset="utf-8" />
+
+    <title>Spot On</title>
+
+	<meta name="Keywords" content="SPOT-ON, Auton Lab, LIRNEasia, Yazmi, technology, solutions, enterprises, organization, automation, planning, plan, system, affordable, reducing cost, software, upload data, optimal, evaluate input, resource planning, electrical, electronic, communications, project, Nuwan Waidyanatha, Sri Lanka ">
+
+	<meta name="description" content="Spot On Solutions (Private) Limited is a for profit company vested under the Registration of Companies Act in Sri Lanka. The company provides Information and Communications Products and Services">
+
+	<meta name="robots" content="all">
+
+	<script type="text/javascript" src="jsfrontend/jquery-1.8.3.js"></script>
+
+	<link rel="stylesheet" href="cs/main.css" media="screen" type="text/css">
+
+	<link rel="stylesheet" href="cs/mainprint.css" media="print" type="text/css">
+
+    	<link href="cs/products.css" media="screen" rel="stylesheet" type="text/css"/>
+
+	<link rel="stylesheet" href="cs/style.css" type="text/css" media="screen" />
+
+       
+        <style media="screen" type="text/css">
+            td{
+
+                vertical-align: baseline;
+
+            }
+
+            
+
+        </style>
+<script>
+var token = null;
+function login(){
+
+var usrName = document.forms["loginForm"]["uname"].value;
+
+var pass = document.forms["loginForm"]["pwd"].value;
+
+if(usrName == null) {
+	alert("Please provide the valid email!");
+	uname.focus();
+	return false;
+} 
+
+if(usrName == "") {
+        alert("Please provide the valid email!");
+        uname.focus();
+	return false;
+} 
+
+if(pass == null) {
+        alert("Please provide the valid password!");
+        pwd.focus();
+	return false;
+}
+
+
+if(pass == "") {
+	alert("Please provide the valid password!");
+	pwd.focus();
+	return false;
+}
+
+var data = {"action":"login"};
+
+HypnaAppUtil.makeJsonRequestWithHeaders("GET","https://202.69.197.115:9443/hypna/login.jag",data,function(html) {
+var x = $("#out").val(html.error);
+
+token = html.sessionId;
+$("#out").x;
+
+if(html.error){
+	alert("Invalid username or password");
+        window.location = "index.htm";
+} else {
+var token = html.sessionId;
+
+document.cookie="token" + "=" + token;
+
+//var p = {token:token};
+//var myForm = document.createElement("form");
+  //myForm.method="post" ;
+  //myForm.action = "transactions.htm" ;
+ // for (var k in p) {
+   // var myInput = document.createElement("input") ;
+   // myInput.setAttribute("name", k) ;
+   // myInput.setAttribute("value", p[k]);
+   // myForm.appendChild(myInput) ;
+  //}
+
+ // document.body.appendChild(myForm) ;
+ // myForm.submit() ;
+ // document.body.removeChild(myForm) ;
+
+        window.location = "transactions.htm";
+}
+},usrName,pass);
+
+}
+</script>
+<script src="hypna/js/jquery.min.js"></script>
+<script src="js/util.js"></script>
+
+<script src="js/hypna.js"></script>
+
+
+
+</head>
+
+<body onload='display_logos();'><div class="container">
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+	<div class="links">
+
+    <div id="search">
+
+<form name="loginForm" method="get">
+
+         <font color="#ffffff" size="-1">Email: </font><br><br><input type="email" name="uname" id="uname" size="15" maxlength="50"/><br><br>
+
+        <font color="#ffffff" size="-1">Password:</font><br><br><input type="password" name="pwd" id="pwd" size="15" maxlength="50"/><br><br>
+
+        <font color="#ffffff" size="-1"></font><br><input type="button" id="log" value="Login" onclick="login()"/>
+</form>
+
+	<br><br><br><br><br> <font color="#ffffff" size="-1"><a href="demos.htm">HELP?</a></font>
+        <br><br><br><br><br> <font color="#ffffff" size="-1"><a href="demos.htm"><<< BACK TO DEMOS</a></font>
+
+</div>
+
+
+
+</div>
+
+<div class="content">
+
+
+<div id="logo"><img src="img/spotonlogo01.jpg" alt="SPOT ON LOGO"></div>
+
+<h1>Welcome to the HYPNA Mobile Payment DEMO </h1>
+
+
+
+<div id="menu">
+
+<ul class="navigation">
+
+	<li class="selected">
+		<a href="index.htm"><strong>HOME</strong></a>
+	</li>
+        <li>
+		<a href="transactions.htm"><strong>TRANSACTIONS</strong></a>
+        </li>
+        <li>
+		<a href="payee.htm"><strong>USER-TERMINALS</strong></a>
+        </li>
+        <li>
+		<a href="groups.htm"><strong>GROUPS</strong></a>
+        </li>             
+	<li>
+		<a href="location.htm"><strong>LOCATION</strong></a>
+        </li>
+	</ul>
+</div>
+
+<div id="submenu">
+<!--
+<ul>
+        <li class="current" id="current_0" >
+              <a href="javascript:void(0);" class="submenuItem" id="submenuItem_0"><strong>submenu1</strong></a></li>
+         <li id="current_1" >
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_1"><strong>submenu2</strong></a></li>
+
+                        <li id="current_2"> 
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_2"><strong>submenu3</strong></a></li>
+
+                        <li id="current_3">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_3"><strong>submenu4</strong></a></li>
+
+                        <li id="current_4">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_4"><strong>submenu5</strong></a></li>
+
+                        <li id="current_5">
+
+                            <a href="javascript:void(0);" class="submenuItem" id="submenuItem_5"><strong>submenu6</strong></a></li>
+
+                    </ul>
+-->
+</div>
+<p>&nbsp;</p>
+
+    <div id="demo"></div>
+
+    <img src="img/pos.png" alt="THis is it" height="300" width="350" />
+
+    <img src="img/sectionboarder.gif" alt="THis is it" height="10" width="780">
+
+</div>
+<!--
+<nav>
+
+<div id="bottomlinks">
+
+<a href="index.htm">Home</a> | 
+
+            <a href="about.htm">?Spot On</a> | 
+
+    		<a href="goals.htm">Our Goals</a> | 
+
+            <a href="summary.htm">Executive Summary</a> |
+
+            <a href="projects.htm"> Projects</a> | 
+
+            <a href="downloads.htm">Downloads</a> | 
+
+            <a href="references.htm">References</a> | 
+
+            <a href="contactus.htm">Contact Us</a>	 
+
+            </div></nav>
+
+    </div>
+
+</div>
+-->
+
+
+<!-- Start of StatCounter Code for Default Guide -->
+
+</body>
+
+</html>

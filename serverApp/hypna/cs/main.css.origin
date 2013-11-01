@@ -1,0 +1,566 @@
+/* Graphics, Design, and Layout by Dacia Closson.  Copyright  Spot On Solutions, 2006.  All Rights Reserved.  Any past, present, or future products of Spot On Solutions are protected and may not be modified in any way without prior written consent of the designer or party responsible for its creation.  This includes removing or modifying our registered logo or name, copyright notice, or any other piece of work belonging to Spot On Solutions.  You may not reproduce this page without the designers written permission. */
+html {
+	height: 100%;
+	width: 100%;
+}
+body {
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: #CCCCCC;
+	font-family: NeoSans, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+/*-----------Container holds all the objects, creates the left and right margin----------------------*/
+.container {
+	width: 1000px;
+	border: 1px solid #999999;
+	background-image: url(../images/main/contentbg.jpg);
+	background-color: #FFFFFF;
+	position: relative;
+	height: 600px;
+	margin: 0px auto;
+}
+/*----------------------------------Content holds all information on page-------------------------------*/
+.content {
+	background-color: #FFFFFF;
+	width: 800px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	height: 580px;
+	background-image: url(../images/main/topbg.jpg);
+	background-repeat: no-repeat;
+}
+/*----------------- The following 3 styles are for the entire page, not specific to any div--------*/
+a {
+	color: #4c3386;
+    text-decoration: none;
+}
+p {
+	font-size: 14px;
+	margin: 5px 5px;
+	color: #4D6880;
+    line-height:16px;
+}
+h1 {
+	background-color: #6386A2;
+	font-size: 15px;
+	margin-top: 5px;
+	padding: 10px;
+	margin-right: 160px;
+	margin-left: 5px;
+	color: #C2EBDD;
+	text-align: center;
+	display: block;
+}
+h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #C2EBDD;
+    text-align: center;
+    display: block;
+    margin: 10px 160px 0px 5px;
+    background-color: #6386A2;
+    padding: 2px;
+}
+h4 {
+    color: #4D6880;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px
+    margin: 10px 3px 0px 0px;
+}
+/*---------------------------------------------------------------------------------------------------------------------*/
+#logo {
+	position: absolute;
+	left: 750px;
+	top: 1px;
+}
+#logo img{
+    height: 120px;
+    width: 200px;
+}
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*div that contains the TOP MENU navigation*/
+
+#menu {
+    background-color: #6386A2;
+    height:30px;
+    width: 760px;
+    float: top;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-left: 1px;
+    clear:none;
+    border: 1px solid #FFFFFF;
+    padding-top: 1px;
+    padding-bottom: 2px
+    background-image: url(../images/main/links/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: 0px 145px;
+    font-family:neosans;
+}
+#menu p{
+    font-size: 12px;
+    color: #FFFFFF;
+    padding-top: 1px;
+    padding-bottom: 1px
+}
+#menu a{
+    font-family:neosans;
+    font-size: 14px;
+    color: #FFFFFF;
+    padding-left: 25px;
+}
+#menu submenu{
+    background-color: #6386A2;
+    height:20px;
+    width: 100%;
+    float: top;
+    margin-top: 1px;
+    margin-right: 3px;
+    margin-left: 7px;
+    clear:none;
+    border: 1px solid #FFFFFF;
+    padding-top: 1px;
+    padding-bottom: 1px
+    background-image: url(../images/main/links/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: 0px 145px;
+    font-family:neosans; /* remove this if doesn't match rest */
+}
+#submenu p{
+    font-size: 12px;
+    color: #C2EBDD;
+    padding-top: 1px;
+    padding-bottom: 1px
+}
+#submenu a{
+    font-family:neosans;
+    color: #4D6880; //000066;
+    padding-left: 20px;
+    text-align: center;
+}
+
+/*div that contains the links to site navigation*/
+.links {
+	background-color: #6386A2;
+	height: 400px;
+	width: 150px;
+	float: right;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-left: 20px;
+	clear:none;
+	border: 1px solid #666666;
+	padding-top: 150px;
+	background-image: url(../images/main/links/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 145px;
+	font-family:neosans;
+}
+
+.links p{
+    color: #ffffff;
+    font-size: 14px;
+    margin-left: 20px;
+    line-height:15px;
+}
+/*----------------------------------------------------------------------------------------------------------------*/
+/*Links to secondary pages, thier behaviors and a span for non css users*/
+a.spoton{
+	background-image: url(../images/main/links/spoton.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 0px;
+}
+a.spoton:hover{
+	background-image: url(../images/main/links/behavior/spoton.jpg);
+	background-repeat: no-repeat;
+}
+a.spoton span{
+	display: none;
+}
+/*------------*/
+a.whatis{
+	background-image: url(../images/main/links/whatis.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.whatis:hover{
+	background-image: url(../images/main/links/behavior/whatisspot.jpg);
+	background-repeat: no-repeat;
+}
+a.whatis span{
+	display: none;
+}
+/*------------*/
+a.services{
+	background-image: url(../images/main/links/services.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 5px;
+}
+a.services:hover{
+	background-image: url(../images/main/links/behavior/services.jpg);
+	background-repeat: no-repeat;
+}
+a.services span{
+	display: none;
+}
+/*------------*/
+a.team{
+	background-image: url(../images/main/links/team.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 5px;
+}
+a.team:hover{
+	background-image: url(../images/main/links/behavior/team.jpg);
+	background-repeat: no-repeat;
+}
+a.team span{
+	display: none;
+}
+/*------------*/
+a.goals{
+	background-image: url(../images/main/links/goals.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.goals:hover{
+	background-image: url(../images/main/links/behavior/goals.jpg);
+	background-repeat: no-repeat;
+}
+a.goals span{
+	display: none;
+}
+/*------------*/
+a.summary{
+	background-image: url(../images/main/links/summary.jpg);
+	background-repeat: no-repeat;
+	height: 28px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.summary:hover{
+	background-image: url(../images/main/links/behavior/summary.jpg);
+	background-repeat: no-repeat;
+}
+a.summary span{
+	display: none;
+}
+/*------------*/
+a.projects{
+	background-image: url(../images/main/links/projects.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.projects:hover{
+	background-image: url(../images/main/links/behavior/projects.jpg);
+	background-repeat: no-repeat;
+}
+a.projects span{
+	display: none;
+}
+/*------------*/
+a.downloads{
+	background-image: url(../images/main/links/downloads.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.downloads:hover{
+	background-image: url(../images/main/links/behavior/downloads.jpg);
+	background-repeat: no-repeat;
+}
+a.downloads span{
+	display: none;
+}
+/*------------*/
+a.references{
+	background-image: url(../images/main/links/references.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.references:hover{
+	background-image: url(../images/main/links/behavior/references.jpg);
+	background-repeat: no-repeat;
+}
+a.references span{
+	display: none;
+}
+/*------------*/
+a.contactus{
+	background-image: url(../images/main/links/contactus.jpg);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 140px;
+	display: block;
+	margin-top: 10px;
+}
+a.contactus:hover{
+	background-image: url(../images/main/links/behavior/contactus.jpg);
+	background-repeat: no-repeat;
+}
+a.contactus span{
+	display: none;
+}
+/*-----------------------------------------------------------------------------------------------------------*/
+/*Links to HOME , LOG IN and SITE MAP */
+#topbar {
+	position: absolute;
+	height: 25px;
+	width: 760px;
+	top: 20px;
+	left: 20px;
+	background-image: url(../images/main/toplinks.png);
+	background-repeat: no-repeat;
+}
+a.home{
+	background-image: url(../images/main/links/home.gif);
+	background-repeat: no-repeat;
+	height: 15px;
+	width:81px;
+	display: block;
+	position: absolute;
+	left: 15px;
+	top:5px;
+}
+a.home:hover{
+	background-image: url(../images/main/links/behavior/home.gif);
+	background-repeat: no-repeat;
+}
+a.home span{
+	display: none;
+}
+a.login{
+	background-image: url(../images/main/links/login.gif);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 99px;
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 5px;
+}
+a.login:hover{
+	background-image: url(../images/main/links/behavior/login.gif);
+	background-repeat: no-repeat;
+}
+a.login span{
+	display: none;
+}
+a.sitemap{
+	background-image: url(../images/main/links/sitemap.gif);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 115px;
+	display: block;
+	position: absolute;
+	left: 200px;
+	top: 5px;
+}
+a.sitemap:hover{
+	background-image: url(../images/main/links/behavior/sitemap.gif);
+	background-repeat: no-repeat;
+}
+a.sitemap span{
+	display: none;
+}
+/*-----------------------------------------------------------------------------------------------------------*/
+/*------The following are the 2 columns colored purple, green ----------*/
+#col1head{
+	width: 300px;
+	float: left;
+	border: 1px solid #FFFFFF;
+	background-color: #DAC9D6;
+	height: 20px;
+	padding: 0px;
+	}
+#col1head p{
+	font-size: 11px;
+}
+#col1head h3{
+	background-color:#AA86A2;
+	margin: 0px;
+	}
+#col1head img {
+	height: 30px;
+	width: 250px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 7px;
+}
+/*----------------------------------------------*/
+#col1body{
+	width: 300px;
+	float: left;
+	border: 1px solid #FFFFFF;
+	background-color: #DAC9D6;
+	height: 295px;
+	padding: 0px;
+	}
+#col1body p{
+	font-size: 11px;
+}
+#col1body h3{
+	background-color:#AA86A2;
+	margin: 0px;
+	}
+#col1body img {
+	height: 190px;
+	width: 200px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+}
+/*----------------------------------------------*/
+#col2head {
+	width: 450px;
+	border: 1px solid #FFFFFF;
+	background-color: #D1E7E0;
+	float: left;
+	height: 30px;
+	}
+#col2head h3 {
+	background-color:#86BFAE;
+	margin: 0px;
+	}
+#col2head p{
+	font-size: 11px;
+}
+#col2head img {
+	height: 30px;
+	width: 250px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 20px;
+}
+/*----------------------------------------------*/
+#col2body {
+	width: 450px;
+	border: 1px solid #FFFFFF;
+	background-color: #D1E7E0;
+	float: left;
+	height: 300px;
+	}
+
+#col2body p{
+	font-size: 14px;
+	margin-left: 10px;
+}
+#col2body img {
+	height: 250px;
+	width: 250px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 20px;
+}
+/*------------------------------------------------------
+#col3 {
+	width: 190px;
+	float: left;
+	border: 1px solid #FFFFFF;
+	background-color: #CFDAEB;
+	height: 295px;
+	}
+#col3 h3 {
+	background-color:#9AB0D6;
+	margin: 0px;
+	}
+#col3 p{
+	font-size: 11px;
+}
+#col3 img {
+	height: 30px;
+	width: 175px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 7px;
+}
+
+--------------------------------------------------------------------------------*/
+/*-------------- TABLE FORMATTING ----------------------------------------------*/
+#table{
+    width: 760px;
+    float: left;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    padding: 0px;
+    }
+
+#table p{
+    font-size: 14px;
+    font-family:neosans;
+    margin: 5px 5px;
+    color: #4D6880;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    line-height:20px;
+}
+
+#table img{
+    height: 50px;
+    width: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+
+#table span{text-decoration: underline;}
+
+/*------------------------------------------------------------------------------*/
+/*Text links at bottom of page*/
+#bottomlinks {
+	background-color: #6386A2;
+	height: 16px;
+	margin: 0px;
+	text-align: center;
+	color: #FFFFFF;
+	width: 100%;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+#bottomlinks a {
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#bottomlinks a:hover {
+	color: #4C3386;
+}
+#search {
+	text-align: center;
+	height: 50px;
+	width: 130px;
+	margin-top: 20px;
+}
+.searchbox {
+	height: 17px;
+	width: 100px;
+}
