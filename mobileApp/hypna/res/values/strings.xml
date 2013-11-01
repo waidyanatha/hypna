@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">hypna - Login</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_app2">hypna - Payment</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_shop_">hypna - Location Details</string>
+    <string name="title_activity_late_pay">hypna - Late Pay</string>
+    <string name="title_activity_add_location">hypna - Add New Location</string>
+    <string name="title_activity_final">hypna </string>
+</resources>
